@@ -1,0 +1,13 @@
+name = input("상품명을 입력하세요: ")
+price = int(input("단가를 입력하세요: "))
+number = int(input("갯수를 입력하세요: "))
+total = (price*number)
+tax = int((total*0.1))
+
+print(f"="*38)
+print(f"     영수증")
+print(f"="*38)
+print(f"{name:<12}   {number:,}개  {total:>11,}원")
+print(f"-"*38)
+print(f"부가세(10%) {tax:>11,}원")
+print(f"합계 {total+tax:>11,}원")
