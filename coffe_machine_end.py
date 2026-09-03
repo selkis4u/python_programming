@@ -68,8 +68,6 @@ def make_coffee(drink_name, order_ingredients):
         resources[item] = resources[item] - order_ingredients[item]
     print(f"여기 {drink_name}가 나왔습니다. 즐기세요.")
 
-#menu = ["espresso", "latte", "cappuccino"]
-#print(menu)
 
 while True:
     item = input("어떤 커피를 드릴까요? (espresso/latte/cappuccino): ")
