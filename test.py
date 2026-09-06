@@ -1,47 +1,38 @@
-import sys
+class BankAccount:
+    # 1. 생성자 (초기화)
+    def __init__(self, owner, balance=0):
+        self.owner = owner  # 공개 속성 (예금주)
+        self.__balance = balance  # 비공개 속성 (잔액: 외부에서 직접 수정 방지)
 
-args = sys.argv[1:]
-for i in args:
-    print(i.upper(), end =" ")
+    # 2. 입금 기능 (메서드)
+    def deposit(self, amount):
+        if amount > 0:
+            self.__balance += amount
+            print(f"{amount:,}원이 입금되었습니다. 현재 잔액: {self.__balance:,}원")
+        else:
+            print("입금액은 0원보다 커야 합니다.")
 
-# [저장 패턴] 리스트 -> 파일 (각 요소 뒤에 줄바꿈 '\n' 추가)
-todos = ["파이썬 복습", "장보기"]
-with open("text/todo.txt", "w", encoding="utf-8") as f:
-    for task in todos:
-        f.write(task + "\n")
+    # 3. 출금 기능 (메서드)
+    def withdraw(self, amount):
+        if amount <= 0:
+            print("출금액은 0원보다 커야 합니다.")
+        elif amount > self.__balance:
+            print("잔액이 부족합니다.")
+        else:
+            self.__balance -= amount
+            print(f"{amount:,}원이 출금되었습니다. 현재 잔액: {self.__balance:,}원")
 
-# [복원 패턴] 파일 -> 리스트 (strip()으로 줄바꿈 '\n' 제거 후 append)
-loaded_todos = []
-with open("text/todo.txt", "r", encoding="utf-8") as f:
-    for line in f:
-        loaded_todos.append(line.strip())
+    # 4. 잔액 조회 기능 (게터 역할)
+    def get_balance(self):
+        return self.__balance
 
-print(loaded_todos)  # ['파이썬 복습', '알고리즘 문제 풀이', '장보기']
+    # 계좌 생성 (철수의 통장 개설, 초기 잔액 10,000원)
+acc = BankAccount("김철수", 10000)
 
-# print("로딩", end="...")
-# print("완료")
+acc.deposit(5000)  # 5,000원 입금 -> 잔액: 15,000원
+acc.withdraw(3000)  # 3,000원 출금 -> 잔액: 12,000원
+acc.withdraw(50000)  # 잔액 부족 처리
 
-   
-# with open("text/새파일.txt", "w", encoding="utf-8") as f:
-#     for i in range(1,11):
-#         data = "%d번째 줄입니다.\n" %i
-#         f.write(data)        
-
-# lines = [f"{i}번째 줄입니다." for i in range(1, 11)]
-
-# with open("새파일.txt", "w", encoding="utf-8") as f:
-#    f.write("\n".join(lines))
-
-# f = open("text/새파일.txt", "a", encoding="utf-8")
-# for i in range(11,20):
-#     data = "%d번째 줄입니다.\n" %i
-#     f.write(data)
-# f.close()
-
-# with open("text/새파일.txt", "r", encoding="utf-8") as f:
-#     for i in f:
-#         print(i.strip())
-#     print(len(i))
-
-# with open("text/foo.txt", "w")as f:
-#     f.write("life is too short, i need you")
+# 비공개 변수 보호 확인
+# acc.__balance = 100000000  <- 이런 식으로 직접 조작하는 것이 통하지 않음
+print(f"최종 확인 잔액: {acc.get_balance():,}원")
