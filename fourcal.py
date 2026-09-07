@@ -91,6 +91,7 @@ if __name__ == "__main__":
     b.setdata(3, 7)
     print("2단계 a.first, b.first :", a.first, b.first)
     print("2단계 id(a) != b(id) :", id(a) != id(b))
+    print("2단계 id(a) != b(id) :", id(a), id(b))
 
     # [3단계] 사칙 연산 (p.27~28)
     a = FourCalStep3()
@@ -112,7 +113,7 @@ if __name__ == "__main__":
     print("4단계 a:", a.add(), a.sub(), a.mul(), a.div())
     print("4단계 b:", b.add(), b.sub(), b.mul(), b.div())
 
-    # [4단계] 값 없이 만들면 객체 생성 시점에 바로 TypeError (ㅔ.32)
+    # [4단계] 값 없이 만들면 객체 생성 시점에 바로 TypeError (p.32)
     try:
         FourCal()
     except TypeError as e:
@@ -120,6 +121,6 @@ if __name__ == "__main__":
 
     # 0으로 나누기
     try:
-        FourCal(4.0).div()
+        FourCal(4,0).div()
     except ZeroDivisionError as e:
         print("나누기 오류 :", e)
