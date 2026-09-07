@@ -89,7 +89,7 @@ if __name__ == "__main__":
     
     library = Library()
 
-        # 초기 테스트 데이터
+    # 초기 테스트 데이터
     library.add_book("점프 투 파이썬", "박응용")
     library.add_book("혼자 공부하는 파이썬", "신윤수")
 
