@@ -98,13 +98,13 @@ class Library():
 
     def show_all(self):
         print("="*56)
-        print(self.name)
+        print(f"{self.name:^28}")
         print("="*56)
-        print(f"{'ID':<6}{'정보':<32}{'상태':>14}")
+        print(f"{'ID':<6}{'정보':<15}{'상태':>30}")
         print("-"*56)
         for item in self.items:
             state = f"대출중({item.borrower})" if item.is_loaned else "대출가능"
-            print(f"{item.item_id:<6}{item.info():<36}{state:>12}")
+            print(f"{item.item_id:<6}{item.info():<15}{state:>10}")
         print("="*56)
 
     def report(self):
