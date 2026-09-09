@@ -23,28 +23,29 @@ class SmartPhoneMain:
         #자료 2개 임의 등록
         addr_book.addAddr(Addr("송용석", "010-1111-1111", "a@mail.com", "대구시 북구", "가족"))
         addr_book.addAddr(Addr("강은비", "010-2222-2222", "b@mail.com", "대구시 남구", "친구"))
+
         while True:
             self.printMenu()
             choice = input("원하는 작업을 선택하세요.(1~6): ").strip()
 
             if choice == "1":
-                new_addr = addr_book.inputAddData()
+                new_addr = addr_book.inputAddrData()
                 addr_book.addAddr(new_addr)
 
             elif choice == "2":
-                addr_book.PrintAllAddr()
+                addr_book.printAllAddr()
 
             elif choice == "3":
-                target_name = input("검색할 사람 이름을 입력하세요: ").strip()
-                addr_book.searchAddr(target_name)
+                word = input("검색할 사람 이름을 입력하세요: ").strip()
+                addr_book.searchAddr(word)
 
             elif choice == "4":
-                target_name = input("삭제할 사람 이름을 입력하세요: ").strip()
-                addr_book.deleteAddr(target_name)
+                word = input("삭제할 사람 이름을 입력하세요: ").strip()
+                addr_book.deleteAddr(word)
 
             elif choice == "5":
-                target_name = input("수정할 사람 이름을 입력하세요: ").strip()
-                addr_book.editAddr(target_name)
+                word = input("수정할 사람 이름을 입력하세요: ").strip()
+                addr_book.editAddr(word)
 
             elif choice == "6":
                 print("프로그램을 종료합니다.")
