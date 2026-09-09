@@ -63,7 +63,7 @@ class DVD(LibraryItem):
         return f"[DVD]{self.title} / {self.author} / {self.minutes}분"
 
 
-class Magajin(LibraryItem):
+class Magazine(LibraryItem):
     def __init__(self, title, item_id, issue):
         super().__init__(title, item_id)
         self.issue = issue
@@ -121,3 +121,49 @@ class Library():
         print(f"{'대출중':<6}{loaned_count:>2}개")
         print(f"{'전체등록':<6}{LibraryItem.total_items:>2}개 (클래스변수)")
         print("-"*56)
+
+
+if __name__ == "__main__":
+
+    # 도서관 생성 및 초기 자료 등록
+    lib = Library("한빛도서관")
+    lib.add(Book("파이썬 입문", "B001", "박응용", 480))
+    lib.add(Book("자료구조", "B002", "김철수", 320))
+    lib.add(DVD("인터스텔라", "D001", "놀란", 169))
+    lib.add(Magazine("과학동아", "M001", 9))
+
+
+    while True:
+        print("1.전체목록  2.통계  3.대출  4.반납  0.종료")
+        choice = input("번호를 선택하세요: ")
+
+        if  choice == "1":
+            lib.show_all()
+
+        elif choice == "2":
+            lib.report()
+
+        elif choice == "3":
+            item_id = input("대출할 자료 번호: ").upper()
+            item = lib.find(item_id)
+            
+            if item is None:
+                print("없는 번호입니다.")
+                continue
+            user_name = input("대출자 이름: ").strip()
+            item.checkout(user_name)
+
+        elif choice == "4":
+            item_id = input("반납할 자료 번호: ").strip().upper()
+            item = lib.find(item_id)
+            if item is None:
+                print("없는 번호입니다.")
+                continue
+            item.return_item()
+
+        elif choice == "0":
+            print("프로그램을 종료합니다.")
+            break
+
+        else:
+            print("없는 메뉴입니다.")
