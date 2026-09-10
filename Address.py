@@ -1,16 +1,18 @@
 class Addr:
 
+
     def __init__(self, name, phone_number, email, address, group):
         self.name = name
-        self.phone_num = phone_number
+        self.phone_number = phone_number
         self.email = email
         self.address = address
         self.group = group
-
         
-    def print_info(self):
-        print(f"이름 : {self.name}")
-        print(f"전화번호 : {self.phone_num}")
-        print(f"이메일 : {self.email}")
-        print(f"주소 : {self.address}")
-        print(f"그룹(친구/가족) : {self.group}")      
+    def __str__(self):
+        return (
+        f"이름 : {self.name}\n"
+        f"전화번호 : {self.phone_number}\n"
+        f"이메일 : {self.email}\n"
+        f"주소 : {self.address}\n"
+        f"그룹(친구/가족) : {self.group}"
+    )
