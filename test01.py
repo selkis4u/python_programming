@@ -1,35 +1,93 @@
-import time
-import threading
-import multiprocessing
 
-def long_task():
-    for i in range(1, 6):
-        time.sleep(1)
-        print("working:%s\n"%i)
+# class Counter:
+#     def __init__(self):
+#         self.count = 0
+#     def __call__(self):
+#         self.count += 1
+#         return self.count
 
-if __name__ == "__main__":
 
-    print("Start")
-    start = time.time()
+# def make_counter():
+#     count = 0
+#     def counter():
+#         nonlocal count
+#         count += 1
+#         print(count)
+#         return count
+#     return counter
 
-#threads = []
-    processes = []
+# a = Counter()
+# b = Counter()
 
-    for i in range(5):
-        p = multiprocessing.Process(target=long_task)
-        processes.append(p)
-        #t = threading.Thread(target=long_task)
-        #threads.append(t)
+# print (a())
+# print (a())
+# print (a())
 
-    for p in processes:
-        p.start()
+# print (b())
+# b()
 
-    for p in processes:
-        p.join()
+# print (a())
 
-    end = time.time()
-    print("End")
-    print("걸린시간: %.2f초"%(end - start))
+
+
+#count = make_counter()
+# print(count)
+
+# score = "python"
+
+# def level_up():
+#     #score = 0
+#     #score += 10
+#     print(f"hello: {score}")
+
+# level_up()
+# print(f"함수외부: {score}")
+
+# def mul(m):
+#     def wrapper(n):
+#         return m*n
+#     return wrapper
+
+# if __name__ == "__main__":
+#     mul3 = mul(3)
+#     mul5 = mul(5)
+
+#     print(mul3(10))
+#     print(mul5(10))
+        
+    
+# import time
+# import threading
+# import multiprocessing
+
+# def long_task():
+#     for i in range(1, 6):
+#         time.sleep(1)
+#         print("working:%s\n"%i)
+
+# if __name__ == "__main__":
+
+#     print("Start")
+#     start = time.time()
+
+# #threads = []
+#     processes = []
+
+#     for i in range(5):
+#         p = multiprocessing.Process(target=long_task)
+#         processes.append(p)
+#         #t = threading.Thread(target=long_task)
+#         #threads.append(t)
+
+#     for p in processes:
+#         p.start()
+
+#     for p in processes:
+#         p.join()
+
+#     end = time.time()
+#     print("End")
+#     print("걸린시간: %.2f초"%(end - start))
 
 # import time
 
