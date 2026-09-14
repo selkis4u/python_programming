@@ -1,49 +1,51 @@
-class Addr:
+from abc import ABC, abstractmethod
 
-       
-    def __init__ (self, name, phone_number, email, address, group, birthday):
+
+class Addr(ABC):
+
+    def __init__(self, name, phone, email, address, birthday, group):
         self.name = name
-        self.phone_number = phone_number
+        self.phone = phone
         self.email = email
         self.address = address
-        self.group = group
         self.birthday = birthday
-        
+        self.group = group
 
+    @abstractmethod
     def print_info(self):
-        
-        print(f"이름 : {self.name}")
-        print(f"전화번호 : {self.phone_number}")
-        print(f"이메일 : {self.email}")
-        print(f"주소 : {self.address}")
+        print(f"이름: {self.name}")
+        print(f"전화번호: {self.phone}")
+        print(f"이메일: {self.email}")
+        print(f"주소: {self.address}")
+        print(f"생일: {self.birthday}")
         print(f"그룹(회사/거래처): {self.group}")
-        print(f"생일 : {self.birthday}")
 
-    
+
 class CompanyAddr(Addr):
 
-    def __init__(self, name, phone_number, email, address, group, birthday, company_name, department, level):
-        super().__init__(name, phone_number, email, address, group, birthday)
-        self.company_name = company_name
+    def __init__(self, name, phone, email, address, birthday, company, department, position):
+        super().__init__(name, phone, email, address, birthday, "회사")
+        self.company = company
         self.department = department
-        self.level = level
+        self.position = position
 
     def print_info(self):
         super().print_info()
-        print(f"회사이름 : {self.company_name}")
-        print(f"부서이름 : {self.department}")
-        print(f"직급 : {self.level}")
+        print(f"회사명: {self.company}")
+        print(f"부서명: {self.department}")
+        print(f"직급: {self.position}")
 
 
 class CustomerAddr(Addr):
-    def __init__(self, name, phone_number, email, address, group, birthday, customer_name, item_name, level):
-        super().__init__(name, phone_number, email, address, group, birthday)
-        self.customer_name = customer_name
-        self.item_name = item_name
-        self.level = level
+
+    def __init__(self, name, phone, email, address, birthday, company, item, position):
+        super().__init__(name, phone, email, address, birthday, "거래처")
+        self.company = company
+        self.item = item
+        self.position = position
 
     def print_info(self):
         super().print_info()
-        print(f"거래처 이름: {self.customer_name}")
-        print(f"품목이름: {self.item_name}")
-        print(f"직급: {self.level}")
+        print(f"회사명: {self.company}")
+        print(f"품목이름: {self.item}")
+        print(f"직급: {self.position}")
