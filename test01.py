@@ -1,3 +1,10 @@
+from sklearn.datasets import load_diabetes
+df = load_diabetes(as_frame=True).frame
+print(df.head())
+
+# import os, sklearn.datasets as ds
+# print(os.path.join(os.path.dirname(ds.__file__),'data'))
+
 
 # class Counter:
 #     def __init__(self):
