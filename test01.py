@@ -1,6 +1,39 @@
-from sklearn.datasets import load_diabetes
-df = load_diabetes(as_frame=True).frame
-print(df.head())
+import numpy as np
+
+# 1. 단일 샘플의 가중합 계산 (스칼라 반복문 vs 벡터 내적)
+x = np.array([2.0, 3.0, -1.5])  # 특성 벡터 (3차원)
+w = np.array([0.5, -0.8, 1.2])  # 가중치 벡터
+b = 0.25                         # 편향(Bias)
+
+# 방법 A: 수학적 수식 그대로 벡터 내적 수행 (np.dot)
+net_dot = np.dot(w, x) + b
+
+# 방법 B: 파이썬 @ 행렬곱 연산자 활용
+net_matmul = w @ x + b
+
+print(f"가중합 (np.dot)  : {net_dot:.4f}")
+print(f"가중합 (@ 연산자): {net_matmul:.4f}")
+
+
+# 2. 미니배치(Batch) 데이터의 병렬 가중합 계산
+# shape: (4개 데이터 샘플, 3개 특성)
+X_batch = np.array([
+    [0.0, 0.0, 1.0],
+    [1.0, 2.0, 0.5],
+    [2.0, -1.0, 0.0],
+    [-1.0, 1.5, 2.0]
+])
+
+# 배치 행렬곱: (4, 3) @ (3,) + scalar -> (4,)
+# 브로드캐스팅(Broadcasting)에 의해 편향 b는 4개 샘플 각각에 자동 가산됨
+batch_net = X_batch @ w + b
+
+print("\n=== 미니배치 가중합 결과 ===")
+for idx, val in enumerate(batch_net):
+    print(f"Sample {idx+1} Net Input: {val:.4f}")
+# from sklearn.datasets import load_diabetes
+# df = load_diabetes(as_frame=True).frame
+# print(df.head())
 
 # import os, sklearn.datasets as ds
 # print(os.path.join(os.path.dirname(ds.__file__),'data'))
