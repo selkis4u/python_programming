@@ -36,4 +36,4 @@ print(f"설명력: {base_r2:.4f}")
 
 #기준모델과 비교
 error_reduction = ((base_mae - mae) / base_mae) * 100
-print(f"기존 모델 평균 오차 개선률: {error_reduction:.1f}")
+print(f"기존 모델 평균 오차 개선률: {error_reduction:.1f}%")
