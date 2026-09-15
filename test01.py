@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import numpy as np
 
 # 1. 단일 샘플의 가중합 계산 (스칼라 반복문 vs 벡터 내적)
@@ -31,6 +32,22 @@ batch_net = X_batch @ w + b
 print("\n=== 미니배치 가중합 결과 ===")
 for idx, val in enumerate(batch_net):
     print(f"Sample {idx+1} Net Input: {val:.4f}")
+=======
+import pickle
+
+data = {"title": "Library System", "version": 2.0}
+
+# 1. 직렬화 (반드시 'wb' 바이너리 쓰기 모드로 오픈)
+with open("system_state.pkl", "wb") as f:
+    pickle.dump(data, f)
+    
+
+# 2. 역직렬화 (반드시 'rb' 바이너리 읽기 모드로 오픈)
+with open("system_state.pkl", "rb") as f:
+    restored_data = pickle.load(f)
+
+print("복원된 객체:", restored_data)
+>>>>>>> 8f915ce7d77a818f1f36b5655e6fd0e0c1443c06
 # from sklearn.datasets import load_diabetes
 # df = load_diabetes(as_frame=True).frame
 # print(df.head())
