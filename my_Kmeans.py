@@ -9,7 +9,7 @@ km = KMeans(n_clusters=3, random_state=42, n_init=10)
 km.fit(X)
 
 labels = km.labels_
-print("무리별 인원=",np.bincount(labels))
+print("무리별 인원=", np.bincount(labels))
 print("무리가 안 흩어진 정도 = %.2f" %km.inertia_)
 print("무리 중심점")
 print(np.round(km.cluster_centers_, 2))
