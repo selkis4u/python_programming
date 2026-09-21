@@ -38,5 +38,3 @@ if __name__ == "__main__":
         max_iter=100
     )
     print(f"최적화 완료 w: {w_opt:.4f} (수렴 스텝: {steps}회)")
-        
-
