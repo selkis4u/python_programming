@@ -36,7 +36,7 @@ def show_all():
         print(f"{i:<5}{r['date']:<12}{r['category']:<7}{r['item']:<13}{r['amount']:>9,}")
     print("-"*46)
     total = sum([r['amount'] for r in records])
-    print(f"{'합계':<5}{total:<13}")
+    print(f"{'합계':<5}{total:<13:,}")
     print("="*46)
 
 def summary():
@@ -80,17 +80,16 @@ def summary():
 def search(word):
     records = load_records()
 
-    found = [r for r in records if word in r ["item"] or word in r["category"]]
+    found = [r for r in records if word in r["item"] or word in r["category"]]
     print(f"'{word}'검색 결과 : {len(found)}건")
     for i, r in enumerate(found, 1):
         print(f"{i}. {r['date']} {r['category']} {r['item']} {r['amount']:,}원")
 
     if len(found) > 0:
-        total = sum([r['amount'] for r in found])
+        total = sum(r['amount'] for r in found)
         print(f"합계 {total:,}원")
 
-# 메뉴루프
-    # sys.argv
+
 args = sys.argv[1:]
 
 if len(args) > 0:
